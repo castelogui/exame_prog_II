@@ -54,11 +54,3 @@ class Cliente():
     @renda.setter
     def renda(self, renda):
         self._renda = renda
-
-    def print_cliente(self):
-        print('------CLIENTE--------')
-        print('CPF: {}'.format(self.cpf))
-        print('Nome: {}'.format(self.nome))
-        print('Telefone: {}'.format(self.telefone))
-        print('Endereço: {}'.format(self.endereco))
-        print('Renda: {}'.format(self.renda))
