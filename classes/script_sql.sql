@@ -1,7 +1,5 @@
 create database ExameFinal;
 
-drop database examefinal;
-
 use ExameFinal;
 
 CREATE TABLE Cliente (
@@ -40,14 +38,3 @@ VALUES ('massagem completa', '2020-09-20 12:40', 'não foi', 1),
 ('massagem nas pernas', '2016-03-03 09:10', 'nao', 6),
 ('reabilitação de acidente', '2017-12-23 19:00', 'sim', 2),
 ('acupuntura', '2016-05-13 11:30', 'sim', 1);
-
-select * from cliente;
-
-SELECT  cpf, nome, telefone FROM Cliente WHERE id_cliente=1;
-
-select * from Agendamento where id_cliente = 2;
-
-select * from agendamento;
-
-drop table Cliente;
-drop table Agendamento;
