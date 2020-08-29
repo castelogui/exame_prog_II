@@ -2,8 +2,12 @@ from cliente import Cliente
 from agendamento import Agendamento
 
 import mysql.connector
-db_connection = mysql.connector.connect(host="localhost", user="root", passwd="", database="bd")
+db_connection = mysql.connector.connect(host='localhost', user='root', passwd='admin', database='ExameFinal')
 
+cursor = db_connection.cursor()
+sql = "INSERT INTO cliente (name, cpf) VALUES (%s, %s)"
+values = ("Maria", "025.658.698-55")
+cursor.execute(sql, values)
 
 def cria_cliente(cliente):
     # cria cliente
