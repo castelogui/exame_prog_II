@@ -17,6 +17,8 @@ def cria_cliente():
   sql = "INSERT INTO Cliente (cpf, nome, telefone, endereco, renda) VALUES (%s, %s, %s, %s, %s)"
   values = (cpf,nome,telefone,endereco,renda)
   cursor.execute(sql, values)  
+
+  db_connection.commit()
   
 
 def cria_agendamento():
@@ -31,9 +33,9 @@ def cria_agendamento():
   cursor.execute(sql, values)  
   
 # imprime o cliente de acordo com o ID
-def imprime_cliente():
+def imprime_cliente(id):
 
-  id_cliente = input('Digite o id do cliente: ')
+  id_cliente = id #input('Digite o id do cliente: ')
   sql = ("SELECT id_cliente, cpf, nome, telefone, endereco, renda FROM cliente WHERE id_cliente={}".format(id_cliente))
   cursor.execute(sql)
 
@@ -50,7 +52,32 @@ def imprime_agendamento():
 
   for (id_agendamento, descricao, data, status, id_cliente) in cursor:
     print(id_agendamento, descricao, data, status, id_cliente)
-  print("\n")
+
+def update_cliente():
+  a = {1: 'cpf', 2: 'nome', 3: 'telefone', 4: 'endereco', 5: 'renda'}
+
+  id_cliente = input('Digite o id do cliente a ser atualizado: ')
+  e = int(input('Escolha: \n1 - CPF \n2 - Nome \n3 - Telefone \n4 - Endereço \n5 - Renda'))
+  setar = input('{} = '.format(a[e]))
+
+  sql = ("UPDATE cliente SET {} = '{}' WHERE id_cliente = {}".format(a[e], setar, id_cliente))
+  cursor.execute(sql)
+
+  db_connection.commit()
+
+def delete_cliente():
+  id_cliente = input('Digite o id do cliente a ser deletado: ')
+  print('Tem certeaz que deseja deletar')
+  imprime_cliente(id_cliente)
+  e = input('s/n')
+  if e == 's':
+    sql = ("DELETE FROM cliente WHERE id_cliente = {}".format(id_cliente))
+    cursor.execute(sql)
+
+    db_connection.commit()
+    print('Cliente deletado!')
+  else:
+    print('ok')
 
 def list_tudo():
   op = input('1 - Cliente / 2 - Agendamento: ')
@@ -74,6 +101,8 @@ def main():
     print('2 - Imprime cliente')
     print('3 - Criar agendamento')
     print('4 - Imprime agendamento')
+    print('5 - Atualizar dados do cliente')
+    print('6 - Deletar cliente')
     e = input(': ')
     if e=='0':
       print('----------LISTANDO TUDO----------')
@@ -83,13 +112,20 @@ def main():
       cria_cliente()
     elif e == '2':
       print('----------IMPRIMINDO CLIENTE----------')
-      imprime_cliente()
+      id = int(input('Id do cliente: '))
+      imprime_cliente(id)
     elif e == '3':
       print('----------CRIANDO AGENDAMENTO----------')
       cria_agendamento()
     elif e == '4':
       print('----------IMPRIMINDO AGENDAMENTO----------')
       imprime_agendamento()
+    elif e == '5':
+      print('----------ATUALIZAR DADOS DO CLIENTE-----------')
+      update_cliente()
+    elif e == '6':
+      print('----------DELETANDO CLIENTE-----------')
+      delete_cliente()
     else:
       print('SAINDO....')
       break
