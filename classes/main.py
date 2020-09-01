@@ -79,6 +79,19 @@ def delete_cliente():
   else:
     print('ok')
 
+def update_agendamento():
+  a = {1: 'descricao', 2: 'data', 3: 'status'}
+
+  id_agendamento = input('Digite o id do agendamento para ser atualizado: ')
+  e = int(input('Escolha:\n1 - Descrição\n2 - Data\n3 - Status'))
+  setar = input('{} = '.format(a[e]))
+
+  sql =("UPDATE agendamento SET {} = '{}' WHERE id_agendamento = {}".format(a[e], setar, id_agendamento))
+  cursor.execute(sql)
+
+  db_connection.commit()
+
+
 def list_tudo():
   op = input('1 - Cliente / 2 - Agendamento: ')
   if op == '1':
@@ -103,6 +116,7 @@ def main():
     print('4 - Imprime agendamento')
     print('5 - Atualizar dados do cliente')
     print('6 - Deletar cliente')
+    print('7 - Atualizar dados do agendamento')
     e = input(': ')
     if e=='0':
       print('----------LISTANDO TUDO----------')
@@ -126,6 +140,9 @@ def main():
     elif e == '6':
       print('----------DELETANDO CLIENTE-----------')
       delete_cliente()
+    elif e == '7':
+      print('----------ATUALIZAR DADOS DO AGENDAMENTO-----------')
+      update_agendamento()
     else:
       print('SAINDO....')
       break
