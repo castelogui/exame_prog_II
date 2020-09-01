@@ -7,7 +7,7 @@ Status: Programação
 Atividade avaliativa de exame final da matéria Programação II - Orientação a Objetos com Python
 
 ```bash
-# Necesspário alterar configuração de conexao com o banco
+# Necessário alterar configuração de conexao com o banco
 user && password
 ```
 
@@ -47,6 +47,14 @@ No arquivo **main.py** existem algumas funções:
 
     Atualiza algum dado do cliente de acordo com o id fornecido
     
-    
+- **delete_agendamento**
 
+    Deleta um agendamento de acordo com o id fornecido
+   
+
+- **update_agendamento**
+
+    Atualiza algum dado do agendamento de acordo com o id fornecido
+    
+    
 ---
