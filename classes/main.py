@@ -44,9 +44,9 @@ def imprime_cliente(id):
   print("\n")
 
 # imprime o agendamento de acordo com o ID
-def imprime_agendamento():
+def imprime_agendamento(id):
 
-  id_agendamento = input('Digite o id do agendamento: ')
+  id_agendamento = id#input('Digite o id do agendamento: ')
   sql = ("SELECT id_agendamento, descricao, data, status, id_cliente FROM Agendamento WHERE id_agendamento={}".format(id_agendamento))
   cursor.execute(sql)
 
@@ -91,6 +91,20 @@ def update_agendamento():
 
   db_connection.commit()
 
+def delete_agendamento():
+  id_agendamento = input('Digite o id do agendamento a ser deletado: ')
+  print('Tem certeza que deseja deletar')
+  imprime_agendamento(id_agendamento)
+  e = input('s/n')
+  if e == 's':
+    sql = ("DELETE FROM agendamento WHERE id_agendamento = {}".format(id_agendamento))
+    cursor.execute(sql)
+
+    db_connection.commit()
+    print('agendamento deletado!')
+  else:
+    print('ok')  
+
 
 def list_tudo():
   op = input('1 - Cliente / 2 - Agendamento: ')
@@ -117,6 +131,7 @@ def main():
     print('5 - Atualizar dados do cliente')
     print('6 - Deletar cliente')
     print('7 - Atualizar dados do agendamento')
+    print('8 - Deletar agendamento')
     e = input(': ')
     if e=='0':
       print('----------LISTANDO TUDO----------')
@@ -133,7 +148,8 @@ def main():
       cria_agendamento()
     elif e == '4':
       print('----------IMPRIMINDO AGENDAMENTO----------')
-      imprime_agendamento()
+      id = int(input('ID do agendamento: '))
+      imprime_agendamento(id)
     elif e == '5':
       print('----------ATUALIZAR DADOS DO CLIENTE-----------')
       update_cliente()
@@ -143,6 +159,9 @@ def main():
     elif e == '7':
       print('----------ATUALIZAR DADOS DO AGENDAMENTO-----------')
       update_agendamento()
+    elif e == '8':
+      print('----------DELETANDO AGENDAMENTO-----------')
+      delete_agendamento()
     else:
       print('SAINDO....')
       break
