@@ -36,7 +36,17 @@ No arquivo **main.py** existem algumas funções:
 - **imprime_agendamento**
 
     Imprime o cliente de acordo com o id fornecido
+ 
+
+- **delete_cliente**
+
+    Deleta um cliente de acordo com o id fornecido
+   
+
+- **update_cliente**
+
+    Atualiza algum dado do cliente de acordo com o id fornecido
+    
+    
 
 ---
-
-Não consegui realizar todos os requesitos da atividade, porem estou deixando o [Link para repositório no github](https://github.com/castelogui/exame_prog_II) onde irei adicionar mais coisas posteriormente.
